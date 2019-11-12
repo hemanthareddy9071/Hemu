@@ -1,0 +1,9 @@
+<BsnlAuaRequest xmlns="http://www.uidai.gov.in/authentication/uid-auth-request/2.0">
+<Auth ac="$$AC$$" lk="$$LK$$" rc="Y" sa="$$SA$$" tid="registered" txn="$$TXN$$" uid="$$UID$$" ver="2.0">
+<Uses bio="y" bt="FMR" otp="n" pa="n" pfa="n" pi="n" pin="n"/>
+<Meta dc="$$DC$$" dpId="$$DPID$$" mc="$$MC$$" 
+mi="$$MI$$" rdsId="$$RDSID$$" rdsVer="$$RDSVER$$"/>
+<Skey ci="$$CI$$">$$SKEY$$</Skey>  <Hmac>$$HMAC$$</Hmac> 
+<Data type="X">$$DATA$$</Data>
+</Auth>
+</BsnlAuaRequest>

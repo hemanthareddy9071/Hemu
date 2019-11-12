@@ -1,0 +1,18 @@
+ <XML>
+    <cafid>201807192018002</cafid>
+    <service_type>WINGS</service_type>
+    <agency>INTENSE</agency>
+    <vendor_id>INTESEWINGS</vendor_id>
+    <vendor_txn_id>INTFMT$$VENDOR_TXN_ID$$</vendor_txn_id>
+    <amount>$$AMOUNT$$</amount>
+    <vendor_datetime>$$DATE_TIME$$</vendor_datetime>
+    <session_id>$$SESSION_ID$$</session_id>
+    <circle>$$STATE$$</circle>
+    <ssa>HYD</ssa>
+    <submobileno>$$CONTACT_NO$$</submobileno>
+    <wl_cafid>$$OB_CAF_NO$$</wl_cafid>
+    <zonecode>$$ZONE$$</zonecode>
+    <email>$$email$$</email>
+    <Info4>NA</Info4>
+    <returnurl>$$RETURN_URL$$</returnurl>
+</XML> 

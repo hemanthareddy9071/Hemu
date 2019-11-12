@@ -1,0 +1,671 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+          <constant name="struts.multipart.maxSize" value="5242880" />  
+
+    <package name="fms" extends="struts-default,json-default">
+        <interceptors>
+            <interceptor name="ReqAuthenticateInterceptor" class="com.in10s.interceptors.CRSRequestAuthenticateInterceptor" />          
+        </interceptors>
+        <global-results>
+            <result name="InvalidRequest">ErrorPage.jsp</result>
+            <result name="SessionExist">session_exist.jsp</result>
+            <result name="InvalidSession">InvalidateSession1.jsp</result>
+            <!--<result name="AJAXINTCPTRERROR">Login/AjxSecurityInterceptor.jsp</result>-->
+            <!--<result name="AJAXINTCPTRERROR" type="json"></result>-->
+        </global-results>
+        <action name="landline_uploadjobs">
+            <result>MenuItems/landline_uploadjobs.jsp</result>
+        </action>
+       
+        <action name="fmsuploadedJobs" class="com.in10s.menuActions.CRSFMSUploadJobsAndCount" method="FMSUploadJobs"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result  type="json" />            
+        </action>
+        
+        <!--FMS KYC-->
+        
+        <action name="fmsKycStep1" class="com.in10s.fmskyc.FMS_NewForm" method="LoadKYcPage">
+            <result>FMSKYC/FMS_kyc_step1.jsp</result>
+            <!--            <result name="success" >
+                <param name="location" >FMSKYC/FMS_kyc_step1.jsp</param>
+                <param name="message">{message}</param>
+            </result> -->
+        </action>  
+        <action name="fmsDeviceLock" class="com.in10s.fmsekyc.FMS_ekyc" method="DeviceLock">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/> 
+            <result type="json" />                 
+        </action>
+        <action name="fmsKycStep2">
+            <result>FMSKYC/FMS_kyc_step2.jsp</result>
+        </action>  
+                    
+        <action name="loadFMSDesign" class="com.in10s.fmskyc.FMS_NewForm" method="loginFormFieldsForFMS"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result  type="json" />            
+        </action>
+        <action name="fetchServicetype" class="com.in10s.fmskyc.FMS_NewForm" method="fetchServiceType"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result  type="json" />            
+        </action>     
+        <action name="sendFranchisedata" class="com.in10s.fmskyc.FMS_NewForm" method="sendFranchiseData"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success" >
+                <param name="location" >FMSKYC/FMS_kyc_step2.jsp</param>
+                <!--<param name="message">{message}</param>-->
+            </result> 
+        </action> 
+        <action name="sendBackToStep1" class="com.in10s.fmskyc.FMS_NewForm" method="sendBackStep1Page"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success" >
+                <param name="location" >FMSKYC/FMS_kyc_step1.jsp</param>
+                <!--<param name="message">{message}</param>-->
+            </result>               
+        </action> 
+        <action name="sendBackToStep2" class="com.in10s.fmskyc.FMS_NewForm" method="sendBackStep2Page"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success" >
+                <param name="location" >FMSKYC/FMS_kyc_step2.jsp</param>
+                <!--<param name="message">{message}</param>-->
+            </result> 
+            <result name="imagpage" >
+                <param name="location" >FMSKYC/attachments.jsp</param>
+                <!--<param name="message">{message}</param>-->
+            </result>                          
+        </action> 
+        
+        <!-- dashboard action starts-->
+        <action name="fmsFetchCurdayStatus" class="com.in10s.menuActions.CRSFmsDashboard" method="fmsFetchCurdayStatus"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result   type="json" />            
+        </action>
+        <action name="fmsFetchBarGraphValues" class="com.in10s.menuActions.CRSFmsDashboard" method="fmsFetchBarGraphValues"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result   type="json" />            
+        </action>
+        <action name="fmsFetchPieGraphValues" class="com.in10s.menuActions.CRSFmsDashboard" method="fmsFetchPieGraphValues"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result   type="json" />            
+        </action>
+        <!--dashboard action ends-->        
+        <action name="clearSesvals" class="com.in10s.fmskyc.FMS_NewForm" method="ClearSessionvals"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result  type="json" />            
+        </action>           
+        <action name="statesLoading" class="com.in10s.fmskyc.FMS_NewForm" method="statesLoading"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result  type="json" />            
+        </action>  
+        <action name="mainlocalityLoading" class="com.in10s.fmskyc.FMS_NewForm" method="fetchMainLocality"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result  type="json" />            
+        </action>
+        <action name="billingtypesLoading" class="com.in10s.fmskyc.FMS_NewForm" method="fetchbillingTypes"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result  type="json" />            
+        </action>
+        <action name="districtsLoading" class="com.in10s.fmskyc.FMS_NewForm" method="DistrictsLoding"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result  type="json" />            
+        </action>        
+        <action name="sublocalitLoading" class="com.in10s.fmskyc.FMS_NewForm" method="fetchSubLocality"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result  type="json" />            
+        </action>            
+        <action name="ExchangeCode" class="com.in10s.fmskyc.FMS_NewForm" method="ExchangeCode"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result  type="json" />            
+        </action>
+        <action name="loadGSTCodesForFMS" class="com.in10s.fmskyc.FMS_NewForm" method="loadGSTCodesForFMS"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result  type="json" />            
+        </action> 
+        <action name="fetchbillingSubTypes" class="com.in10s.fmskyc.FMS_NewForm" method="fetchbillingSubTypes"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result  type="json" />            
+        </action>
+        <action name="setSessionValue" class="com.in10s.fmskyc.FMS_NewForm" method="setValueIntoSession"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result  type="json" />            
+        </action>
+        <action name="cafCompleteData" class="com.in10s.fmskyc.FMS_NewForm" method="kycCafData">           
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <!--<result  type="json" />-->  
+            <result name="FMSAttachments">FMSKYC/attachments.jsp</result>      
+            <result name="FmskycpreviewPage">FMSKYC/FMS_kyc_step4.jsp</result>       
+        </action>        
+        <action name="ValidationImages" class="com.in10s.fmskyc.FMS_NewForm" method="ValidationImages"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success" >
+                <param name="location" >FMSKYC/FMS_kyc_step4.jsp</param>
+                <!--<param name="message">{message}</param>-->
+            </result>          
+            <result name="error" >
+                <param name="location" >FMSKYC/attachments.jsp</param>
+                <!--<param name="message">{message}</param>-->
+            </result>          
+        </action>            
+       
+        <action name="setSessionValue" class="com.in10s.fmskyc.FMS_NewForm" method="setValueIntoSession"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result  type="json" />            
+        </action>
+        
+        <action name="downloadfmspdfKYC" class="com.in10s.fmspdf.CRSFmsPdf" method="createfmsDownloadPdf">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="download" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;fileName=%{fileName}</param>
+                <param name="bufferSize">4096</param>               
+            </result>
+            <result name="failed" >
+                <param name="location" >/FMSKYC/FMS_kyc_step5.jsp</param>
+                 <!--<param name="message">{response}</param>-->
+            </result>      
+        </action> 
+        <action name="downloadpdfDKYCLL" class="com.in10s.dkyc.landline.CRSDKYCLLPdf" method="createDKYCLLPdf">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;fileName=%{fileName}</param>
+                <param name="bufferSize">4096</param>               
+            </result>
+            <result name="failed" >
+                <!--<param name="location" >/FMSKYC/FMS_kyc_step5.jsp</param>-->
+                 <!--<param name="message">{response}</param>-->
+            </result>      
+        </action> 
+<!--        <action name="downloadfmspdfKYC" class="com.in10s.fmspdf.CRSFmsPdf" method="createfmsDownloadPdf">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="download" type="json" />            
+            <result name="failed" type="json" />      
+        </action> -->
+        <action name="uploadFmsPrintReceipt" class="com.in10s.fmspdf.CRSFmsPdf" method="createfmsPrintPdf">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success" type="json" />            
+            <result name="failed" type="json" />            
+        </action>
+
+        <action name="finalAcknowlegment" class="com.in10s.fmsjobupload.CRSFmsJobUpload" method="finalAcknowlegment"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <!--<result  type="json" />-->      
+            <result name="success">FMSKYC/FMS_kyc_step5.jsp</result><!--            
+            <result name="FAIL">FMSKYC/FMS_kyc_step4.jsp</result>            -->
+        </action>
+        <!--FMS Ekyc-->
+        <action name="uploadFmsEkycPrintReceipt" class="com.in10s.fmspdf.CRSFmsPdf" method="receiptPrintFmsFun">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success" type="json" />            
+            <result name="failed" type="json" />            
+        </action>
+        <action name="downloadfmsEkycpdfKYC" class="com.in10s.fmspdf.CRSFmsPdf" method="createfmsPdf">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="download" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;fileName=%{fileName}</param>
+                <param name="bufferSize">4096</param>               
+            </result>
+            <result name="failed" >
+                <param name="location" >/FMSKYC/FMS_kyc_step5.jsp</param>
+                <!-- <param name="message">{response}</param>-->
+            </result>      
+        </action>       
+        <action name="finalAcknowlegmentEkyc" class="com.in10s.fmsjobupload.CRSFmsJobUpload" method="finalAcknowlegment"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success">FMSeKYC/FMS_ekyc_step7.jsp</result>          
+        </action>       
+        
+        <!--FMSEKYC-->
+        
+        <action name="FmsEkycFranchisedata" class="com.in10s.fmsekyc.FMS_ekyc" method="FmsEkycFranchisedata"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success" >
+                <param name="location" >FMSeKYC/FMS_eKYC_step2.jsp</param>
+                <!-- <param name="location" >FMSeKYC/FMS_eKYC_step2.jsp</param>-->
+                <!--<param name="message">{message}</param>-->
+            </result> 
+        </action>         
+        
+        <action name="FMS_eKYC_step1" class="com.in10s.fmsekyc.FMS_ekyc" method="loadekyc"> 
+            <result name="success">FMSeKYC/FMS_eKYC_step1.jsp</result>            
+        </action>
+        <action name="FmsEkycauthenticate" class="com.in10s.fmsekyc.FMS_ekyc" method="FmsEkycauthenticate"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/> 
+            <result name="FMS_eKYC_step2">FMSeKYC/FMS_eKYC_step2.jsp</result>            
+            <result name="FMS_eKYC_step3">FMSeKYC/FMS_eKYC_step3.jsp</result> 
+            <result name="FMS_eKYC_step5">FMSeKYC/FMS_eKYC_step5.jsp</result>            
+            <result name="FMS_eKYC_step6">FMSeKYC/FMS_ekyc_step6.jsp</result>            
+            <result name="FMS_eKYC_step4">FMSeKYC/FMS_eKYC_step4.jsp</result>            
+        </action>
+        <action name="FMS_eKYCPage3" class="com.in10s.fmsekyc.FMS_ekyc" method="FMSeKYCPage3">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success">FMSeKYC/FMS_eKYC_step4.jsp</result>
+        </action>
+        <action name="fmsekycFullData" class="com.in10s.fmsekyc.FMS_ekyc" method="fmsekycFullData"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success" >
+                <param name="location" >FMSeKYC/FMS_eKYC_cust_decl.jsp</param>
+                <!--<param name="location" ></param>-->
+                <!--<param name="message">{message}</param>-->
+            </result>          
+            <result name="attachementPage" >
+                <param name="location" >FMSeKYC/FMS_eKYC_attachments.jsp</param>
+                <!--<param name="message">{message}</param>-->
+            </result>          
+        </action>
+       
+        <action name="fmscheckAttachments" class="com.in10s.fmskyc.CRSAttachments" method="checkAttachments">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/> 
+            <result  type="json" />            
+        </action>
+        
+        <action name="fmsdownloadimageuploadtool" class="com.in10s.fmskyc.CRSAttachments" method="preparedownloadtool">
+            <!--<interceptor-ref name="ReqAuthenticateInterceptor"/>--> 
+            <result name="failed">FMSKYC/attachments.jsp</result>
+            <result name="download" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;fileName=%{toolname}</param>
+                <param name="bufferSize">4096</param>
+            </result>                        
+        </action>
+        
+        <action name="fmsuploadImage" class="com.in10s.fmskyc.CRSAttachments" method="uploadImage">
+            <!--<interceptor-ref name="ReqAuthenticateInterceptor"/>--> 
+            <interceptor-ref name="fileUpload" />
+            <interceptor-ref name="basicStack" />
+            <result  type="json" />            
+        </action>
+        
+        <action name="fmsdeleteAttachment" class="com.in10s.fmskyc.CRSAttachments" method="deleteAttachment">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/> 
+            <result  type="json" />            
+        </action>
+        <!--        <action name="FMSAttachments" > 
+            <result>
+                FMSKYC/attachments.jsp
+            </result> 
+        </action> -->
+        <!--        <action name="FmskycpreviewPage" > 
+            <result>
+                FMSKYC/FMS_kyc_step4.jsp
+            </result> 
+        </action> -->
+        
+        <action name="ValidationImagesEkyc" class="com.in10s.fmsekyc.FMS_ekyc" method="imaageValidation"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/> 
+            <result name="success" >
+                <param name="location" >FMSeKYC/FMS_eKYC_cust_decl.jsp</param>
+                <!--<param name="message">{message}</param>-->
+            </result>          
+            <result name="errorPage" >
+                <param name="location" >FMSeKYC/FMS_eKYC_attachments.jsp</param>
+                <!--<param name="message">{message}</param>-->
+            </result>          
+        </action>        
+        
+        <!--- OTP BASED AUTHENTICATIN-->   
+    
+        <action name="sendOTPRequest" class="com.in10s.fmsekyc.FMS_ekyc" method="sendOTPRequest">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/> 
+            <result  type="json" />            
+        </action>
+        <action name="verfyOTPAndSubmit" class="com.in10s.fmsekyc.FMS_ekyc" method="verfyOTPAndSubmit">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/> 
+            <result  type="json" />
+        </action>
+        <action name="FmsEkycCall" class="com.in10s.fmsekyc.FMS_ekyc" method="FmsEkycCall">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success">FMSeKYC/FMS_eKYC_form.jsp</result>
+            <!--<result name="fail">Login/login.jsp</result>-->
+        </action>
+        
+        <action name="FMS_eKYC_otp" class="com.in10s.fmsekyc.FMS_ekyc" method="loadekyc"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>            
+            <result name="success">FMSeKYC/FMS_eKYC_otp.jsp</result>            
+        </action>
+        
+        <action name="fmsekycFullDataOTP" class="com.in10s.fmsekyc.FMS_ekyc" method="fmsekycFullData"> 
+            <!--<interceptor-ref name="ReqAuthenticateInterceptor"/>-->
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success" >
+                <param name="location" >FMSeKYC/FMS_ekyc_receipt.jsp</param>
+                <!--<param name="invalidate" >Login/login.jsp</param>-->
+                <!--<param name="location" ></param>-->
+                <!--<param name="message">{message}</param>-->
+            </result>          
+            <result name="attachementPage" >
+                <param name="location" >FMSeKYC/FMS_eKYC_attachments.jsp</param>
+                <!--<param name="message">{message}</param>-->
+            </result>          
+        </action>        
+        <action name="uploadJobAndAcknowlegmentOTP" class="com.in10s.fmsjobupload.CRSFmsJobUpload" method="uploadFMSWingsJob"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="FMSKYC"></result>          
+            <result name="FMSEKYC" type="json" ></result>          
+            <result name="FAIL" type="json"></result>   
+            <!--<result  type="json" />saveWingsJob-->
+        </action>        
+        <action name="uploadJobWithPayment" class="com.in10s.fmsjobupload.CRSFmsJobUpload" method="uploadFMSWingsJob"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="FMSKYC">FMSKYC/FMS_kyc_step5.jsp</result>          
+            <result name="FMSEKYC" >FMSKYC/FMS_kyc_step5.jsp</result>          
+            <result name="FAIL">FMSKYC/FMS_kyc_step5.jsp</result>   
+            <!--<result  type="json" />saveWingsJob-->
+        </action>        
+          
+              
+        
+        <action name="registerWingsUser" class="com.in10s.fmskyc.FMS_NewForm" method="registerWingsUser">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success" type="json" />
+            <result name="failed" type="json" />            
+        </action>
+        
+        <action name="loadRegisteredUsers" class="com.in10s.fmskyc.FMS_NewForm" method="loadRegisteredUsers">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success" type="json" />
+            <result name="failed" type="json" />            
+        </action>
+        
+        <action name="backToGrid" class="com.in10s.fmsekyc.FMS_ekyc" method="backToLoadRegisteredUsers"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>            
+            <result name="success">Login/login.jsp</result>            
+        </action>
+        
+        <action name="newUserReister" class="com.in10s.fmsekyc.FMS_ekyc" method="newUserRegistration"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>            
+            <result name="KYC">FMSKYC/FMS_kyc_step2.jsp</result>            
+            <!--<result name="EKYC">FMSeKYC/FMS_eKYC_otp.jsp</result>-->            
+            <result name="EKYC">Login/wings_flow_selection.jsp</result>            
+        </action>
+       
+        
+        <action name="FMSSelectReserveNo" class="com.in10s.fmsekyc.FMSReserveNumbers" method="FMSunReserveCYMNNos"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result   type="json" />            
+        </action>
+        <action name="IsSelectedNumberBlocked" class="com.in10s.fmsekyc.FMSReserveNumbers" method="IsSelectedNumberBlocked"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result   type="json" />            
+        </action>
+        <action name="loadFMSCircles" class="com.in10s.fmsekyc.FMS_ekyc" method="loadFMSCircles"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result   type="json" />            
+        </action>
+
+        <action name="fetchCustTockenValue" class="com.in10s.fmsekyc.FMSWingsCustomerSupport" method="fetchCustTockenValue"> 
+            <!--<interceptor-ref name="ReqAuthenticateInterceptor"/>-->
+            <result name="success"   type="json" />            
+        </action>
+        <action name="PayWingsAmt" class="com.in10s.fmsekyc.FMS_ekyc" method="fetchCustJobDetails"> 
+            <!--<interceptor-ref name="ReqAuthenticateInterceptor"/>-->
+            <result name="success">Login/wings_payment.jsp</result>          
+            <result name="ISDIR">FMSeKYC/FMS_ekyc_ack.jsp</result>          
+            <result name="TRIALPAY">DKYC/wings_trial_payment.jsp</result>          
+            <result name="fail">Login/wings_fail.jsp</result>          
+        </action>
+        <action name="paymentRequest" class="com.in10s.fmsjobupload.CRSFmsJobUpload" method="paymentRequest"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success"  type="json" ></result>          
+            <result name="fail"  type="json" ></result>           
+        </action>
+        <action name="paymentRequestForISDIR" class="com.in10s.fmsjobupload.CRSFmsJobUpload" method="paymentRequestForISDIR"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success"  type="json" ></result>          
+            <result name="fail"  type="json" ></result>           
+        </action>
+
+         <action name="registerWingsUserWithoutPayment" class="com.in10s.fmskyc.FMS_NewForm" method="registerWingsUserWithoutPayment"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success">FMSKYC/FMS_wings_rept_not_paid.jsp</result>          
+            <result name="fail">Login/wings_fail.jsp</result>          
+        </action>  
+        <action name="customerSupportPage" class="com.in10s.fmsekyc.FMSWingsCustomerSupport" method="customerSupportPage"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success" >Login/wings_helpdesk.jsp</result>          
+        </action>
+        <action name="sendPaymentLink" class="com.in10s.fmsekyc.FMSWingsCustomerSupport" method="sendPaymentLink"> 
+            <!--<interceptor-ref name="ReqAuthenticateInterceptor"/>-->
+            <result name="success"  type="json" ></result>          
+            <result name="fail"  type="json" ></result>           
+        </action>
+        <action name="sendOBLink" class="com.in10s.fmsekyc.FMSWingsCustomerSupport" method="sendOBLink"> 
+            <!--<interceptor-ref name="ReqAuthenticateInterceptor"/>-->
+            <result name="success"  type="json" ></result>          
+            <result name="fail"  type="json" ></result>           
+        </action>
+        <action name="loadWingscomplaint" class="com.in10s.fmsekyc.FMSWingsCustomerSupport" method="loadWingscomplaint"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result   type="json" />            
+        </action>
+        <action name="submitWingsComplaint" class="com.in10s.fmsekyc.FMSWingsCustomerSupport" method="submitWingsComplaint"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result   type="json" />            
+        </action>
+        <action name="loadWingsPlan" class="com.in10s.fmsekyc.FMS_ekyc" method="getWingsPlans"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result   type="json" />            
+        </action>
+
+        <action name="fetchCafDetails" class="com.in10s.fmsekyc.FMS_ekyc" method="fetchCafDetails"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <!--<result name="success">FMSeKYC/FMS_eKYC_otp.jsp</result>-->            
+            <result name="success">DKYC/wings_dkyc_attachments.jsp</result>           
+        </action>
+        <action name="dkycFormData" class="com.in10s.dkyc.CRSWingsDkyc" method="dkycFormData"> 
+            <!--<interceptor-ref name="ReqAuthenticateInterceptor"/>-->
+             <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success">DKYC/wings_dkyc_preview.jsp</result>            
+        </action>
+        <action name="back2DKYCForm" class="com.in10s.dkyc.CRSWingsDkyc" method="back2DKYCForm">
+            <!--<interceptor-ref name="ReqAuthenticateInterceptor"/>-->
+            <result name="success">FMSeKYC/FMS_DKYC_form.jsp</result>
+            <!--<result name="fail">Login/login.jsp</result>-->
+        </action>
+        <action name="uploadImage" class="com.in10s.dkyc.CRSWingsDkyc" method="uploadImage">
+            <!--<interceptor-ref name="ReqAuthenticateInterceptor"/>--> 
+            <interceptor-ref name="fileUpload" />
+            <interceptor-ref name="basicStack" />
+            <result  type="json" />            
+        </action>
+
+        <action name="deleteAttachmentDKYC" class="com.in10s.dkyc.CRSWingsDkyc" method="deleteAttachment">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/> 
+            <result  type="json" />            
+        </action>
+         <action name="processFlow" class="com.in10s.fmsekyc.FMS_ekyc" method="processFlow"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>            
+            <result name="DKYC">DKYC/wings_dkyc_attachments.jsp</result>            
+            <result name="EKYC">DKYC_Landline/dkyc_self_landline.jsp</result>            
+            <!--<result name="EKYC">FMSeKYC/FMS_eKYC_otp.jsp</result>-->            
+        </action>
+        <action name="wingsDKYCForm" class="com.in10s.dkyc.CRSWingsDkyc" method="wingsDKYCForm">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="DKYC">DKYC/wings_dkyc_customer_details.jsp</result>
+            <result name="LLDKYC">DKYC_Landline/dkyc_self_ll_customer_details.jsp</result>
+        </action>
+        <action name="chooseFlow" class="com.in10s.dkyc.CRSWingsDkyc" method="chooseFlow">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success">Login/wings_flow_selection.jsp</result>
+        </action>
+        <action name="back2DKYCDocs" class="com.in10s.dkyc.CRSWingsDkyc" method="back2DKYCDocs">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success">DKYC/wings_dkyc_attachments.jsp</result>
+        </action>
+       
+        <action name="jobUploadDkyc" class="com.in10s.dkyc.CRSDKYCJobUpload" method="uploadDKYCWingsJob">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="FMSDKYC" type="json" ></result>
+            <result name="FAIL" type="json" ></result>
+        </action>
+          <action name="uploadDKYCJobWithPayment" class="com.in10s.dkyc.CRSDKYCJobUpload" method="uploadDKYCWingsJob"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="FMSKYC">FMSKYC/FMS_kyc_step5.jsp</result>          
+            <result name="FMSDKYC" >FMSKYC/FMS_kyc_step5.jsp</result>          
+            <result name="FAIL">FMSKYC/FMS_kyc_step5.jsp</result>   
+            <!--<result  type="json" />saveWingsJob-->
+        </action> 
+         
+           
+         <action name="nxtToDKYCLLDocs" class="com.in10s.dkyc.landline.CRSDKYCLandLine" method="nxtToDKYCLLDocs">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success">DKYC_Landline/dkyc_self_ll_attachments.jsp</result>
+        </action>
+         <action name="dkycLLFormData" class="com.in10s.dkyc.landline.CRSDKYCLandLine" method="dkycLLFormData">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success">DKYC_Landline/dkyc_self_ll_num_sel.jsp</result>
+        </action>
+        <action name="loadWingsLLNos" class="com.in10s.dkyc.CRSWingsDkyc" method="fetchWingsLLNos"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success"  type="json" ></result>            
+        </action>
+        <action name="reserveWingsLLNos" class="com.in10s.dkyc.CRSWingsDkyc" method="reserveWingsLLNos"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success"  type="json" ></result>            
+        </action>
+        <action name="loadWingsLLPlans" class="com.in10s.dkyc.CRSWingsDkyc" method="loadWingsLLPlans"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success"  type="json" ></result>            
+        </action>
+        <action name="loadLLStatesByPin" class="com.in10s.dkyc.CRSWingsDkyc" method="loadLLStatesByPin"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success"  type="json" ></result>            
+        </action>
+        <action name="loadLLDistrics" class="com.in10s.dkyc.CRSWingsDkyc" method="loadLLDistrics"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success"  type="json" ></result>            
+        </action>
+        <action name="checkUserEntry" class="com.in10s.dkyc.CRSWingsDkyc" method="checkUserEntry"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success"  type="json" ></result>            
+        </action>
+         <action name="nxtToDKYCLLPlan" class="com.in10s.dkyc.landline.CRSDKYCLandLine" method="nxtToDKYCLLPlan">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success">DKYC_Landline/dkyc_self_landline_plan_info.jsp</result>
+        </action>
+         <action name="nxtToDKYCLLPreview" class="com.in10s.dkyc.landline.CRSDKYCLandLine" method="nxtToDKYCLLPreview">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success">DKYC_Landline/dkyc_self_landline_preview.jsp</result>
+        </action>
+         <action name="saveDKYCLLJob" class="com.in10s.dkyc.landline.CRSDKYCLandLine" method="saveDKYCLLJob">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success">DKYC_Landline/dkyc_self_landline_receipt.jsp</result>
+            <result name="fail">Login/wings_fail.jsp</result>
+        </action>
+        <action name="downloadPdfSamp" class="com.in10s.dkyc.CRSWingsDkyc" method="downloadPdfSamp"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success"   ></result>            
+        </action>
+        <action name="processSkippedDocs" class="com.in10s.dkyc.landline.CRSDKYCLandLine" method="processSkippedDocs">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success">DKYC_Landline/dkyc_self_ll_upload_docs.jsp</result>
+            <result name="fail">Login/wings_fail.jsp</result>
+        </action>
+        <action name="saveSkippedDocs" class="com.in10s.dkyc.CRSWingsDkyc" method="saveSkippedDocs"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success"  type="json" ></result>            
+        </action>
+        <action name="couponValidCheck" class="com.in10s.dkyc.CRSWingsDkyc" method="couponValidCheck"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success"  type="json" ></result>            
+        </action>
+        
+        <action name="llNumValidCheck" class="com.in10s.dkyc.CRSWingsDkyc" method="llNumValidCheck"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success"  type="json" ></result>            
+        </action>
+        <action name="mobNumValidCheck" class="com.in10s.dkyc.CRSWingsDkyc" method="mobNumValidCheck"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success"  type="json" ></result>            
+        </action>
+        <action name="otpValidForMOBPlan" class="com.in10s.dkyc.CRSWingsDkyc" method="otpValidForMOBPlan"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success"  type="json" ></result>            
+        </action>
+        <action name="loadCircleList" class="com.in10s.dkyc.CRSWingsDkyc" method="loadCircleList"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success"  type="json" ></result>            
+        </action>
+        
+        <action name="fetchPlanAmt" class="com.in10s.dkyc.CRSWingsDkyc" method="fetchPlanAmt"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success"  type="json" ></result>            
+        </action>
+        <action name="takePaymentForTrial" class="com.in10s.dkyc.CRSWingsDkyc" method="takePaymentForTrial"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success"  type="json" ></result>            
+        </action>
+        
+        
+        <action name="disconnectTrial" class="com.in10s.dkyc.CRSWingsDkyc" method="disconnectTrial"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success">Login/wings_receipt.jsp</result>
+            <result name="error">Login/wings_fail.jsp</result>  
+        </action> 
+        <action name="uploadDKYCTrailJob" class="com.in10s.dkyc.CRSDKYCJobUpload" method="uploadDKYCWingsTrailJob"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="FMSKYC">FMSKYC/FMS_kyc_step5.jsp</result>          
+            <result name="FMSDKYC" >FMSKYC/FMS_kyc_step5.jsp</result>          
+            <result name="FAIL">Login/wings_fail.jsp</result>   
+            <!--<result  type="json" />saveWingsJob-->
+        </action> 
+        
+        <action name="bsnlEmpHRMSUrl" class="com.in10s.dkyc.CRSWingsDkyc" method="bsnlEmpHRMSUrl"> 
+            <!--<interceptor-ref name="ReqAuthenticateInterceptor"/>-->
+            <result name="success">DKYC/wings_bsnl_emp_plan.jsp</result>            
+            <result name="used">Login/wings_fail.jsp</result>            
+            <result name="empty">Login/wings_fail.jsp</result>   
+            <result name="fail">ErrorPage.jsp</result>         
+        </action>
+        <action name="proceedToOnbEmp" class="com.in10s.dkyc.CRSWingsDkyc" method="proceedToOnbEmp"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success">DKYC/wings_bsnl_emp_form.jsp</result>  
+            <result name="fail">ErrorPage.jsp</result>          
+        </action>
+        
+        <action name="renewReqFrCDRJobs" class="com.in10s.dkyc.RenewalCDRTrialJobs" method="renewReqFrCDRJobs"> 
+            <result name="success">DKYC/wings_cdr_renewl.jsp</result>          
+            <result name="fail">Login/wings_fail.jsp</result>          
+        </action>
+        <action name="takePaymentForCDRRenewal" class="com.in10s.dkyc.RenewalCDRTrialJobs" method="takePaymentForCDRRenewal"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success"  type="json" ></result>            
+        </action>
+        <action name="uploadCDRImage" class="com.in10s.dkyc.RenewalCDRTrialJobs" method="uploadCDRImage">
+            <!--<interceptor-ref name="ReqAuthenticateInterceptor"/>--> 
+            <interceptor-ref name="fileUpload" />
+            <interceptor-ref name="basicStack" />
+            <result  type="json" />            
+        </action>
+        <action name="paymentCallBackForCDRTrial" class="com.in10s.payment.PaymentGateway" method="paymentCallBackForCDRTrial">            
+            <result name="success">Login/wings_receipt.jsp</result>
+            <result name="error">Login/wings_fail.jsp</result>
+        </action>
+                <action name="disconnectCDRTrial" class="com.in10s.dkyc.RenewalCDRTrialJobs" method="disconnectCDRTrial"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success">Login/wings_receipt.jsp</result>
+            <result name="error">Login/wings_fail.jsp</result>  
+        </action>
+        <action name="loadWingsSchemes" class="com.in10s.dkyc.CRSWingsDkyc" method="loadWingsSchemes"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success"  type="json" ></result>            
+        </action> 
+        <action name="validateHRMS" class="com.in10s.dkyc.CRSWingsDkyc" method="validateHRMS"> 
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success"  type="json" ></result>            
+        </action> 
+        
+         <action name="checkRMNStatus" class="com.in10s.dkyc.CRSWingsDkyc" method="checkRMNStatus">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="success" type="json" />
+            <result name="failed" type="json" />            
+        </action>
+        
+    </package>            
+</struts>

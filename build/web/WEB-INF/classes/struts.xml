@@ -1,0 +1,156 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="Login" extends="struts-default,json-default">
+        
+        <interceptors>
+            <interceptor name="ReqAuthenticateInterceptor" class="com.in10s.interceptors.CRSRequestAuthenticateInterceptor" />          
+        </interceptors>
+        
+        <!--         <global-results>
+            <result name="InvalidRequest">/sample/ReqError.jsp</result>
+        </global-results>
+        -->
+        <global-results>
+            <result name="InvalidRequest">Error.jsp</result>
+            <result name="SessionExist">session_exist.jsp</result>
+            <result name="InvalidSession">InvalidateSession1.jsp</result>
+            <!--<result name="AJAXINTCPTRERROR">Login/AjxSecurityInterceptor.jsp</result>-->
+            <!--<result name="AJAXINTCPTRERROR" type="json"></result>-->
+        </global-results>
+        
+        <action name="Login" class="com.in10s.core.CRSLoginValidator" method="preLoginProcess">
+            <!--<interceptor-ref name="ReqAuthenticateInterceptor"/>--> 
+            <result name="login">Login/login.jsp</result>
+            <result name="error">Login/login.jsp</result>
+        </action>
+        <action name="paymentCallBack" class="com.in10s.payment.PaymentGateway" method="paymentCallBack">            
+            <result name="regSuccess">FMSKYC/FMS_new_reg_recpt.jsp</result>
+            <result name="success">FMSKYC/FMS_kyc_step5.jsp</result>
+            <result name="error">FMSKYC/FMS_Wings_pymt_fail.jsp</result>
+        </action>        
+        <action name="paymentCallBackForDidEkyc" class="com.in10s.payment.PaymentGateway" method="paymentCallBackForDidEkyc">            
+            <result name="success">Login/wings_receipt.jsp</result>
+            <result name="error">Login/wings_fail.jsp</result>
+        </action>   
+        
+        <action name="paymentCallBackForTrial" class="com.in10s.payment.PaymentGateway" method="paymentCallBackForTrial">            
+            <result name="success">Login/wings_receipt.jsp</result>
+            <result name="error">Login/wings_fail.jsp</result>
+        </action>   
+        <action name="paymentCallBackForMobile" class="com.in10s.payment.PaymentGateway" method="paymentCallBackForMobile">                        
+            <result name="success">FMSKYC/FMS_kyc_step5.jsp</result>
+            <result name="error">FMSKYC/FMS_Wings_pymt_fail.jsp</result>
+        </action>      
+        <action name="sancharUser" class="com.in10s.core.CRSLoginValidator" method="sancharUserLogin">
+            <!--<interceptor-ref name="ReqAuthenticateInterceptor"/>--> 
+            <result name="login">Login/login.jsp</result>
+        </action>
+        <action name="PreLogin">
+            <!--<interceptor-ref name="ReqAuthenticateInterceptor"/>--> 
+            <result>Login/login.jsp</result>
+        </action>
+        <action name="ErrorPage">
+            <!--<interceptor-ref name="ReqAuthenticateInterceptor"/>--> 
+            <result>ErrorPage.jsp</result>
+        </action>
+        <action name="ReportPage">
+            <!--<interceptor-ref name="ReqAuthenticateInterceptor"/>--> 
+            <result>ReportsPage.jsp</result>
+        </action>
+        <action name="InvalidateSession">
+            <!--<interceptor-ref name="ReqAuthenticateInterceptor"/>--> 
+            <result>InvalidateSession.jsp</result>
+        </action>
+        <action name="complaint">
+            <result>MenuItems/complaints.jsp</result>
+        </action>
+        <action name="new_complaint">
+            <result>MenuItems/new_complaint.jsp</result>
+        </action>
+
+        <action name="validateLogin" class="com.in10s.core.CRSLoginValidator" method="loginValidation">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>  
+            <result name="SUCCESS">FMSKYC/FMS_kyc_step2.jsp</result>
+            <!--<result name="SUCCESS">FMSeKYC/FMS_eKYC_otp.jsp</result>-->
+            <!--<result name="SUCCESS">FMSKYC/FMS_kyc_step2.jsp</result>-->
+            <!--<result name="SUCCESS">FMSKYC/FMS_kyc_step2.jsp</result>-->
+            <!--<result name="FirstLogin">Login/firstlogin.jsp</result>-->
+            <!--<result name="PasswordChange">Login/updatechangepasswrod.jsp</result>-->
+            <!--<result name="USER_LOGGED_IN">Login/login_exist.jsp</result>-->
+            <!--<result name="FAIL">Login/login.jsp</result>-->
+        </action>
+        <action name="validateLoginFrmSwitch" class="com.in10s.core.CRSLoginValidator" method="loginValidationFrmSwitch">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>  
+            <result name="SUCCESS">Login/Layout.jsp</result>
+            <result name="FirstLogin">Login/firstlogin.jsp</result>
+            <result name="PasswordChange">Login/updatechangepasswrod.jsp</result>
+            <result name="USER_LOGGED_IN">Login/login_exist.jsp</result>
+            <result name="FAIL">Login/login.jsp</result>
+        </action>
+        <action name="preferenceUpdate" class="com.in10s.core.CRSLoginValidator" method="preferedUpdate">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/> 
+            <result name="SUCCESS">Login/login.jsp</result>
+            <result name="FAIL">Login/firstlogin.jsp</result>
+        </action>
+        <action name="forgotpassword"  class="com.in10s.core.CRSLoginValidator" method="loginReqForword">
+            <result name="success">Login/forgotpassword.jsp</result>
+            <result name="error">Login/PreLogin.jsp</result>
+        </action>
+        <action name="hintAnswer" class="com.in10s.core.CRSLoginValidator" method="hintAnswer">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/> 
+            <result name="SUCCESS">Login/login.jsp</result>
+            <result name="FAIL">Login/forgotpassword.jsp</result>
+        </action>
+        <action name="newpassword" class="com.in10s.core.CRSLoginValidator" method="loginReqForword">
+            <result name="success">Login/newpassword.jsp</result>
+            <result name="error">Login/PreLogin.jsp</result>
+        </action>
+        <action name="updateChangePassword" class="com.in10s.core.CRSLoginValidator" method="updateChangePassword">
+            <result name="SUCCESS">Login/login.jsp</result>
+            <result name="FAIL">Login/updatechangepasswrod.jsp</result>
+        </action>
+        <action name="hintQuestion" class="com.in10s.core.CRSLoginValidator" method="hintQuestion">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result type="json" />            
+        </action>
+        <action name="logoutUser" class="com.in10s.core.CRSLoginValidator" method="logoutUser">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/> 
+            <result name="SUCCESS">Login/PreLogin.jsp</result>
+        </action>
+        <action name="internalLogOut" class="com.in10s.core.CRSLoginValidator" method="internalLogOut">
+            <result name="SUCCESS">Login/login.jsp</result>
+            <result name="FAIL">Login/login_exist.jsp</result>           
+        </action>
+        <action name="Dashboard" class="com.in10s.core.CRSLoginValidator" method="clearSession">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="SUCCESS">Login/dashboard.jsp</result>
+        </action>
+        <action name="jobStatusChange" class="com.in10s.core.CRSLoginValidator" method="clearJobStatusSession">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="SUCCESS">Login/dashboard.jsp</result>
+        </action>
+
+        <!--changepassword-->
+        <action name="changepassword">
+            <result>MenuItems/changepassword.jsp</result>
+        </action>
+        <action name="changepssword" class="com.in10s.menuActions.CRSChangePassword" method="changePassword">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/> 
+            <result type="json" />            
+        </action>
+        <action name="newPasswordChng" class="com.in10s.menuActions.CRSChangePassword" method="newPWDChanage">
+            <result type="json" />            
+        </action>
+        
+        <!--End rejected Jobs-->
+        <action name="fmsDashboard" class="com.in10s.core.CRSLoginValidator" method="clearSession">
+            <interceptor-ref name="ReqAuthenticateInterceptor"/>
+            <result name="SUCCESS">Login/dashboard_fms.jsp</result>
+        </action>
+ 
+    </package>
+    <include file="fms.xml"></include>
+</struts>

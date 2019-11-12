@@ -1,0 +1,599 @@
+
+
+/*******************************
+Slider
+*******************************/
+ .irs-grid span.irs-grid-text{display:none !important;}
+  .irs {
+  position: relative;
+  display: block;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.irs-line {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  outline: none !important;
+}
+.irs-line-left,
+.irs-line-mid,
+.irs-line-right {
+  position: absolute;
+  display: block;
+  top: 0;
+}
+.irs-line-left {
+  left: 0;
+  width: 11%;
+}
+.irs-line-mid {
+  left: 9%;
+  width: 82%;
+}
+.irs-line-right {
+  right: 0;
+  width: 11%;
+}
+.irs-bar {
+  position: absolute;
+  display: block;
+  left: 0;
+  width: 0;
+}
+.irs-bar-edge {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+}
+.irs-shadow {
+  position: absolute;
+  display: none;
+  left: 0;
+  width: 0;
+}
+.irs-slider {
+  position: absolute;
+  display: block;
+  cursor: default;
+  z-index: 1;
+}
+.irs-slider.single {
+  background: #b8d8dd;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+.irs-slider.from {
+  background: #007183;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+.irs-slider.to {
+  background: #007183;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+.irs-slider.type_last {
+  z-index: 2;
+}
+.irs-min {
+  position: absolute;
+  display: block;
+  left: 0;
+  cursor: default;
+}
+.irs-max {
+  position: absolute;
+  display: block;
+  right: 0;
+  cursor: default;
+}
+.irs-from,
+.irs-to,
+.irs-single {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  cursor: default;
+  white-space: nowrap;
+}
+.irs-grid {
+  position: absolute;
+  display: none;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+}
+.irs-with-grid .irs-grid {
+  display: block;
+}
+.irs-grid-pol {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 8px;
+  background: #000;
+}
+.irs-grid-pol.small {
+  height: 4px;
+}
+.irs-grid-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  white-space: nowrap;
+  text-align: center;
+  font-size: 9px;
+  line-height: 9px;
+  padding: 0 3px;
+  color: #000;
+}
+.irs-disable-mask {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: -1%;
+  width: 102%;
+  height: 100%;
+  cursor: default;
+  background: rgba(0, 0, 0, 0);
+  z-index: 2;
+}
+.lt-ie9 .irs-disable-mask {
+  background: #000;
+  filter: alpha(opacity=0);
+  cursor: not-allowed;
+}
+.irs-disabled {
+  opacity: 0.4;
+}
+.irs-hidden-input {
+  position: absolute !important;
+  display: block !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  outline: none !important;
+  z-index: -9999 !important;
+  background: none !important;
+  border-style: solid !important;
+  border-color: transparent !important;
+}
+.irs {
+  height: 40px;
+}
+.irs-with-grid {
+  height: 60px;
+}
+.irs-line {
+  height: 12px;
+  top: 25px;
+}
+.irs-line-left {
+  height: 12px;
+  background-position: 0 -30px;
+  background: #b8d8dd;
+  -webkit-border-top-left-radius: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  -moz-border-radius-topleft: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.irs-line-mid {
+  height: 12px;
+  background-position: 0 0;
+  background: #b8d8dd;
+}
+.irs-line-right {
+  height: 12px;
+  background-position: 100% -30px;
+  background: #b8d8dd;
+  -webkit-border-top-right-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  -moz-border-radius-topright: 10px;
+  -moz-border-radius-bottomright: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.irs-bar {
+  height: 12px;
+  top: 25px;
+  background-position: 0 -60px;
+  background: #008296;
+  -webkit-border-top-right-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  -moz-border-radius-topright: 10px;
+  -moz-border-radius-bottomright: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.irs-bar-edge {
+  top: 25px;
+  height: 12px;
+  width: 9px;
+  background-position: 0 -90px;
+  background: #008296;
+  -webkit-border-top-left-radius: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  -moz-border-radius-topleft: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.irs-shadow {
+  height: 3px;
+  top: 34px;
+  background: #000;
+  opacity: 0.25;
+}
+.lt-ie9 .irs-shadow {
+  filter: alpha(opacity=25);
+}
+.irs-slider {
+  width: 16px;
+  height: 18px;
+  top: 22px;
+  background-position: 0 -120px;
+}
+.irs-slider.state_hover,
+.irs-slider:hover {
+  background-position: 0 -150px;
+}
+.irs-min,
+.irs-max {
+  color: #999;
+  font-size: 10px;
+  line-height: 1.333;
+  text-shadow: none;
+  top: 0;
+  padding: 1px 3px;
+  background: #e1e4e9;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.irs-from,
+.irs-to,
+.irs-single {
+  color: #fff;
+  font-size: 10px;
+  line-height: 1.333;
+  text-shadow: none;
+  padding: 5px 5px; 
+  background: #007183;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.irs-from:after,
+.irs-to:after,
+.irs-single:after {
+  position: absolute;
+  display: block;
+  content: "";
+  bottom: -6px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -3px;
+  overflow: hidden;
+  border: 3px solid transparent;
+  border-top-color: #007183;
+}
+.irs-grid-pol {
+  background: #e1e4e9;
+}
+.irs-grid-text {
+  color: #999;
+}
+.irs span.irs-from,.irs-to {margin-top: -10px;}
+.irs-max {display:none;}.irs-min {display:none;}
+
+
+/*******************************
+Bubbles Chart
+*******************************/
+
+#chartdiv {background: #c2dbe9;color:#333333 !important ;		
+	width		: 100%;
+	height		: 350px;
+	font-size	: 11px;
+}	
+.panel-fullsize #chartdiv{height : 550px;}
+
+#container {height:350px;}
+
+
+/*******************************
+17.0 - CHARTS
+*******************************/
+/* ----- CHART.JS ----- */
+    .chartjs {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .chartjs-container {
+        min-height: 340px;
+        position: relative;
+        text-align: center;
+    }
+.panel-fullsize .chartjs-container{height : 550px;}        
+		
+/* ----- FLOT ----- */
+    .flot-chart {
+        overflow: hidden;
+    }
+    
+    .flot {
+        width: 100%;
+    }
+    
+    .flot.line {
+        height: 400px;
+    }
+    
+    .flot.bar {
+        height: 400px;
+    }
+    
+    .flot.pie {
+        height: 400px;
+    }
+    
+    #flotTip {
+        padding: 5px 10px !important;
+        font-size: 14px !important;
+        font-weight: 400 !important;
+        color: #fff !important;
+        background: #22262e !important;
+        border: none !important;
+        border-radius: 0 !important;
+    }
+    
+    .legendColorBox {
+        display: inline-block;
+        margin-right: 5px;
+    }
+        
+    @media (max-width: 767px) {
+        /*Flot*/
+            .flot.bar {
+                height: 200px;
+            }
+            
+            .flot.pie {
+                height: 200px;
+            }
+    }/*End media query*/
+        
+/* ----- EASY PIE CHART ----- */
+    .easy-chart {
+        position: relative;
+        display: inline-block;
+        width: 160px;
+        height: 160px;
+        line-height: 160px;
+        text-align: center;
+        font-weight: 300;
+        font-size: 40px;
+        color: #c9c9c9;/*83BF17*/
+    }
+    
+    .easy-chart canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    
+    .chart-xs {
+        width: 160px;
+        height: 160px;
+        line-height: 160px;
+        font-size: 20px;
+    }
+    
+    .chart-sm {
+        width: 180px;
+        height: 180px;
+        line-height: 180px;
+        font-size: 25px;
+    }
+    
+    .chart-md {
+        width: 200px;
+        height: 200px;
+        line-height: 200px;
+        font-size: 30px;
+    }
+    
+    .chart-lg {
+        width: 220px;
+        height: 220px;
+        line-height: 220px;
+        font-size: 35px;
+    }
+        
+/* ----- SPARKLINES ----- */
+    .sparkline.tri {
+        padding: 16px 10px 10px;
+    }
+    
+    .jqstooltip {
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+        width: auto !important;
+        height: auto !important;
+        background: #22262e !important;
+    }
+
+
+
+
+
+/*******************************
+18.0 - MAPS
+*******************************/
+    .full-width-map {
+        position: fixed;
+        width: 100%;
+        padding-right: 320px;
+        padding-bottom: 100px;
+        -webkit-transition: padding-right 0.3s ease;
+        -moz-transition:    padding-right 0.3s ease;
+        -ms-transition:     padding-right 0.3s ease;
+        -o-transition:      padding-right 0.3s ease;
+        transition:         padding-right 0.3s ease;
+    }
+    
+    .sidebar-toggle .full-width-map {
+        padding-right: 0;
+    }
+    
+/* ----- MAPLACE ----- */
+    .maplace {
+        height: 100%;
+    }
+    
+    @media (max-width: 1170px) {
+        .full-width-map {
+            padding-right: 0;
+        }
+    }    
+	
+		
+/*---------------------------------------------------
+    SPINNER
+  ---------------------------------------------------
+    https://github.com/istvan-ujjmeszaros/bootstrap-touchspin
+  ---------------------------------------------------*/
+  
+  
+.bootstrap-touchspin .input-group-btn-vertical {
+  position: relative;
+  white-space: nowrap;
+  width: 1%;
+  vertical-align: middle;
+  display: table-cell;
+}
+.bootstrap-touchspin .input-group-btn-vertical > .btn {
+  display: block;
+  float: none;
+  width: 100%; background-color:#ffffff !important;
+  padding: 8px 10px; 
+  margin-left: -1px;  border: 1px solid #d2d2d2;
+  position: relative; 
+  margin-bottom: 0px!important;
+}
+.bootstrap-touchspin .input-group-btn-vertical .bootstrap-touchspin-up {
+  border-radius: 0; background-color:#ffffff !important;
+  border-top-right-radius: 4px; border-bottom: 1px solid #ffffff; 
+}
+.bootstrap-touchspin .input-group-btn-vertical .bootstrap-touchspin-down {
+  margin-top:-2px;
+  border-radius: 0;  background-color:#ffffff !important;
+  border-bottom-right-radius: 4px; border-top: 1px solid #ffffff; 
+} 
+.bootstrap-touchspin .input-group-btn-vertical i {
+  position: absolute; 
+  top: 3px;
+  left: 5px;
+  font-size: 9px;
+  font-weight: normal;
+}
+ 
+.glyphicon-chevron-up:before { background:url(../images/spinner_toparrow.png) no-repeat bottom left; width:9px; height:5px; padding:2px 1px;
+}
+
+.glyphicon-chevron-down:before {
+   background:url(../images/spinner_downarrow.png) no-repeat top left; width:9px; padding:2px 1px;
+}
+
+
+
+/*Home page animation*/
+
+#amain{
+	/* The main container div */
+	width:410px;
+	/* CSS3 rounded cornenrs */
+	-moz-border-radius:12px;
+	-webkit-border-radius:12px;
+	border-radius:12px;
+}
+
+#holder{
+	/* The unordered list that is to be split into pages */
+	width:400px;
+	overflow:hidden;
+	position:relative;
+	padding-bottom:10px;
+}
+
+.swControls{
+	position:absolute;
+	margin-top:10px;
+}
+
+a.swShowPage{
+	/* The links that initiate the page slide */
+	float:left; border:2px solid #3d3d3d;
+	height:10px;
+	margin:4px 3px;
+	text-indent:-9999px;
+	width:10px;
+	/*border:1px solid #ccc;*/
+	
+	/* CSS3 rounded corners */
+	
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	border-radius:7px;
+}
+
+a.swShowPage:hover,
+a.swShowPage.active{
+	background-color:#3d3d3d;	
+	/*	CSS3 inner shadow */	
+	-moz-box-shadow:0 0 7px #1e435d inset;
+	/*-webkit-box-shadow:0 0 7px #1e435d inset;*/
+	box-shadow:0 0 7px #1e435d inset;
+}
+
+#holder li{
+	list-style:none outside none;
+	float:left;
+}
+
+#holder,
+#holder li{
+	/* Applying rouded corners to both the holder and the holder lis */
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	border-radius:8px;
+}

@@ -1,0 +1,18 @@
+<XML>
+	<Vendor_id>INTESEWINGS</Vendor_id> 
+	<SUBSCRIBER_ID>$$CAF_NO$$</SUBSCRIBER_ID>
+	<VENDOR_TXN_ID>INTFMT$$VENDOR_TXN_ID$$</VENDOR_TXN_ID>
+	<AMOUNT>$$AMOUNT$$</AMOUNT>
+	<DATE_TIME>$$DATE_TIME$$</DATE_TIME>
+	<sessionId>$$SESSION_ID$$</sessionId>
+	<Circle>$$STATE$$</Circle>
+	<ssa>HYD</ssa>
+	<SVCTYPE>WINGS</SVCTYPE>
+	<Info1>$$CONTACT_NO$$</Info1>
+	<Info2>$$OB_CAF_NO$$</Info2>
+	<Info3></Info3>
+	<Info4></Info4>
+	<ServiceName>WINGSLLprepaid</ServiceName>
+	<ReturnUrl>$$RETURN_URL$$</ReturnUrl>
+	<AGENCY>INTENSE</AGENCY>
+</XML>

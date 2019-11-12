@@ -1,0 +1,65 @@
+
+body {
+    font-family: Arial, Helvetica, sans-serif !important;
+    color: #7a7676;
+    line-height: 20px;
+    overflow-x: hidden;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+}
+
+html, body {
+  height: 100%;
+}
+.jumbotron{background-color:#3d4a6b;}
+.jumbotron.vertical-center {
+  margin-bottom: 0; /* Remove the default bottom margin of .jumbotron */
+}
+
+.vertical-center {
+  min-height: 100%;  
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex; 
+  
+ 
+    -webkit-box-align : center;
+  -webkit-align-items : center;
+       -moz-box-align : center;
+       -ms-flex-align : center;
+          align-items : center;
+  width: 100%;
+  
+         -webkit-box-pack : center;
+            -moz-box-pack : center;
+            -ms-flex-pack : center;
+  -webkit-justify-content : center;
+          justify-content : center;
+}
+
+.nopadding{padding:0 !important;}
+.jumbotron p {
+    font-size: 13px;
+    font-weight: 200;
+    margin-bottom: 15px;
+	margin-top:30px;
+	color:#222;
+}
+
+.primarybt { background: #e67e22 !important; font-family:arial; border:1px solid  #e67e22 !important; color: #ffffff !important; font-weight:bold; padding:10px 20px !important; cursor: pointer; text-shadow: none !important;}
+.primarybt { -moz-border-radius: 3px !important; -webkit-border-radius: 3px !important; border-radius: 3px !important; border: none; font-size: 16px !important;}
+.primarybt {-moz-box-shadow: 1px 1px 2px #dfdfdf !important;  -webkit-box-shadow: 1px 1px 2px #dfdfdf !important;  box-shadow: 1px 1px 2px #dfdfdf !important;  text-decoration:none !important;}
+.primarybt a{ text-decoration:none; font-weight:normal; text-decoration:none !important;  border:1px solid  #e67e22 !important;}
+.primarybt:hover { background: #f28524 !important; color: #ffffff !important; text-decoration:none;  border:1px solid  #f28524 !important;}
+.primarybt:active { -moz-box-shadow: inset 1px 1px 1px #12274c;  border:1px solid  #f28524 !important; -webkit-box-shadow: inset 1px 1px 1px #12274c; box-shadow: inset 1px 1px 1px #12274c; color: #474646;  text-decoration:none; }
+
+
+
+.panelFotter{border-top: 1px solid #f0f0f0;margin-top:30px; padding-top: 15px;}
+.errorMsgInfo h3 {
+    font-size: 18px !important;
+}

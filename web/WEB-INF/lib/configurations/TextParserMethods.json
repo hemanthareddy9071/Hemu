@@ -1,0 +1,78 @@
+{
+    "fnStrMid": {
+        "classname":"com.in10s.commons.RMTextParser",
+        "methodname":"subString",
+        "agrs":"string@int@int"
+    },
+    "fnCurrentTime": {
+        "classname":"com.in10s.commons.RMTextParser",
+        "methodname":"fnCurrentTime",
+        "agrs":"string"
+    },
+    "fnConvertDate": {
+        "classname":"com.in10s.commons.RMTextParser",
+        "methodname":"fnConvertDate",
+        "agrs":"string@string@string"
+    },
+    "fnConvertDateFromLong": {
+        "classname":"com.in10s.commons.RMTextParser",
+        "methodname":"fnConvertDateFromLong",
+        "agrs":"long@string"
+    },
+    "fnNationByCode": {
+        "classname":"com.in10s.commons.RMTextParser",
+        "methodname":"fnNationByCode",
+        "agrs":"string"
+    },
+    "fngenarateUUID": {
+        "classname":"com.in10s.commons.RMTextParser",
+        "methodname":"fngenarateUUID",
+        "agrs":"string"
+    },
+
+    "fnStartsWith": {
+        "classname":"com.in10s.commons.RMTextParser",
+        "methodname":"startsWith",
+        "agrs":"string@string"
+    },
+    "fnEndsWith": {
+        "classname":"com.in10s.commons.RMTextParser",
+        "methodname":"endsWith",
+        "agrs":"string@string"
+    },
+    "fnToLower": {
+        "classname":"com.in10s.commons.RMTextParser",
+        "methodname":"toLower",
+        "agrs":"string"
+    },
+    "fnToUpper": {
+        "classname":"com.in10s.commons.RMTextParser",
+        "methodname":"toUpper",
+        "agrs":"string"
+    },
+    "fnAvailConverDate": {
+        "classname":"com.in10s.commons.RMTextParser",
+        "methodname":"fnAvailConverDate",
+        "agrs":"string@string"
+    },
+    "fnContains": {
+        "classname":"com.in10s.commons.RMTextParser",
+        "methodname":"fnContainsString",
+        "agrs":"string@string"
+    },
+    "fnEscapeSql": {
+        "classname":"com.in10s.commons.RMTextParser",
+        "methodname":"fnEscapeSql",
+        "agrs":"string"
+    },
+    "fnEscapeXml": {
+        "classname":"com.in10s.commons.RMTextParser",
+        "methodname":"fnEscapeXml",
+        "agrs":"string"
+    },
+    "fnendSequnce": {
+        "classname":"com.in10s.commons.RMTextParser",
+        "methodname":"subStringTail",
+        "agrs":"string@int"
+    }
+}
